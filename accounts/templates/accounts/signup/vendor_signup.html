@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container">
+    <h1 style="color: blue">Vendor Sign Up</h1>
+    <form method="POST">
+      {{ form.non_field_errors }}
+      <table>
+        <tr>
+          <td>Display Name: </td>
+          <td>{{ form.username}}</td>
+          <td>{{ form.username.errors }}</td>
+        </tr>
+        <tr>
+          <td>Email Address: </td>
+          <td>{{ form.email}}</td>
+          <td>{{ form.email.errors }}</td>
+        </tr>
+        <tr>
+          <td>Password: </td>
+          <td>{{ form.password1}}</td>
+          <td>{{ form.password1.errors }}</td>
+        </tr>
+        <tr>
+          <td>Password Confirmation: </td>
+          <td>{{ form.password2}}</td>
+          <td>{{ form.password2.errors }}</td>
+        </tr>
+        <tr>
+          <td>{{ form.submit}}</td>
+        </tr>
+      </table>
+        {% csrf_token %}
+        <input type="submit" value="Sign Up" class="btn btn-primary">
+    </form>
+</div>
+{% endblock %}

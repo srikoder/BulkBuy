@@ -1,0 +1,13 @@
+{% extends 'products/product_base.html' %}
+
+{% block product_content %}
+<div class="col-md-4">
+    {% include 'products/_productCard.html' with product=productreview.product %}
+</div>
+<div class="card-body col-md-8">
+    <h4>{{ productreview.title }}</h4>
+    <p> Rating: {{ productreview.rating }} </p>
+    <p class="card-text">{{productreview.text}}</p>
+    <p class="card-text"><small class="text-muted">Review by:{{ productreview.author }}</small></p>
+</div>
+{% endblock %}

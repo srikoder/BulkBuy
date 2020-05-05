@@ -1,0 +1,17 @@
+{% extends 'orders/orders_base.html' %}
+
+{% block order_content %}
+<div class="container">
+	<div class="container">
+		{% include 'products/_productCard.html' %}
+	</div>
+	<h4>Select Quantity</h4>
+	<div class="container">
+		<form method="POST" action="{% url 'orders:create' pk=view.kwargs.pk %}" id="orderForm">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Place Order" class="btn btn-primary btn-large">
+		</form>
+	</div>
+</div>
+{% endblock %}

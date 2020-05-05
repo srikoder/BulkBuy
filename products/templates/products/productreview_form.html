@@ -1,0 +1,12 @@
+{% extends 'products/product_base.html' %}
+
+{% block product_content %}
+<h4>Review:</h4>
+<div class="container">
+<form method="POST" action="{% url 'products:create_review' pk=pk%}" enctype="multipart/form-data" id="postForm">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Add" class="btn btn-primary btn-large">
+</form>
+</div>
+{% endblock %}

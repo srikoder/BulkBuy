@@ -1,0 +1,24 @@
+{% load static %}
+
+  <div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+
+    <div class="col-md-4">
+      {% if product.image %}
+      <a href="{% url 'products:single' pk=product.pk %}"><img src="{{ product.image.url }}" class="card-img"></a>
+      {% else %}
+      <a href="{% url 'products:single' pk=product.pk %}"><img src="{% static 'images/No_Img_Available.png' %}" alt="No Image Available" class="card-img"></a>
+      {% endif %}
+    </div>
+
+    <div class="col-md-8">
+      <div class="card-body">
+        <a href="{% url 'products:single' pk=product.pk %}"><h5 class="card-title">{{ product.name }}</h5></a>
+        <p class="card-text">{{product.description|truncatechars:200}}</p>
+        <h3>₹ {{product.price}}</h3>
+        <p class="card-text"><strong> Rating:</strong> {% if product.rating %} {{product.rating}} stars {% else %} <em>No rating Available </em>{% endif %} </p>
+        <p class="card-text"><small class="text-muted">Sold by: <a href="{% url 'products:from_vendor' username=product.vendor.user.username %}">{{ product.vendor.user.username }}</a></small></p>
+      </div>
+    </div>
+  </div>
+</div>

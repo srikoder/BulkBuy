@@ -1,0 +1,12 @@
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-12">
+      <div class="card-body">
+        <a href="{% url 'products:single_review' pk=review.pk %}"><h5 class="card-title">{{ review.title }}</h5></a>
+        <p class="card-text"> Rated as: {{ review.rating }} </p>
+        <p class="card-text">{{review.text|truncatechars:200}}</p>
+        <p class="card-text"><small class="text-muted">Review by:{{ review.author }}</small></p>
+      </div>
+    </div>
+  </div>
+</div>

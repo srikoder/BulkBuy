@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+  <div class="container">
+    <h1>Login as:</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <a href="{% url 'accounts:vendor_login' %}">
+        <div class="card bg-primary text-white">
+          <div class="card-body">
+            <h5 class="card-title" align="center">Vendor</h5>
+            <p class="card-text" align="center">Click here to sell your amazing products on BulkBuy!</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-6 red-card">
+      <a href="{% url 'accounts:customer_login' %}">
+        <div class="card bg-danger text-white">
+          <div class="card-body">
+            <h5 class="card-title" align="center">Customer</h5>
+            <p class="card-text" align="center">Click here to Buy amazing products on BulkBuy!</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  </div>
+
+{% endblock %}

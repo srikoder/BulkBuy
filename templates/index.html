@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 align='center'>
+{% if user.is_authenticated %}
+  Hello, {{ user.username }}
+{% else %}
+  Welcome to BulkBuy!
+{% endif %}
+</h1>
+
+
+
+{% endblock %}

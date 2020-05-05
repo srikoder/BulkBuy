@@ -1,0 +1,46 @@
+{% extends "orders/orders_base.html" %}
+{% load static %}
+
+
+{% block order_content %}
+  {% for order in object_list %}
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="card-header" {%if order.status == "WT"%} style="background:orange" {%elif order.status == 'PC'%} style="background:yellow" {%elif order.status == 'CL'%} style="background:red" {%elif order.status == 'DP'%} style="background:green" {%endif%}>
+        Status: {%if order.status == "WT"%} Waiting {%elif order.status == 'PC'%} Placed {%elif order.status == 'CL'%} Cancelled {%elif order.status == 'DP'%} Dispatched {%endif%}
+        <small class="muted">Ordered at {{ order.created_at }}</small> 
+      </div>
+      
+      <div class="row no-gutters">
+        {% if order.product %}
+        <div class="col-md-4">
+          {% if order.product.image %}
+          <a href="{% url 'products:single' pk=order.product.pk %}"><img src="{{ order.product.image.url }}" class="card-img"></a>
+          {% else %}
+          <a href="{% url 'products:single' pk=order.product.pk %}"><img src="{% static 'images/No_Img_Available.png' %}" alt="No Image Available" class="card-img"></a>
+          {% endif %}
+        </div>
+
+        <div class="col-md-8">
+          <div class="card-body">
+            <a href="{% url 'products:single' pk=order.product.pk %}"><h5 class="card-title">{{ order.product.name }}</h5></a>
+            <h3>₹ {{order.product.price}}</h3>
+            <p class="card-text"><small class="text-muted">Sold by: <a href="{% url 'products:from_vendor' username=order.product.vendor.user.username %}">{{ order.product.vendor.user.username }}</a></small></p>
+          </div>
+        </div>
+        {% else %}
+          <div class="col-md-4">
+            <a href="#"><img src="{% static 'images/No_Img_Available.png' %}" alt="No Image Available" class="card-img"></a>
+          </div>
+          <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Product Deleted</h5>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  {% empty %}
+    <h5> Place some orders to see them here! </h5>
+    <div class="container"><a href="{% url 'products:all' %}" class='btn btn-danger'>Browse Products!</a></div>
+  {% endfor %}
+{% endblock %}
