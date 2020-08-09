@@ -18,7 +18,7 @@
         
         <div class="container">
           Product Ready to dispatch:
-            <a href="{% url 'products:dispatch' pk=product.pk %}" class="btn btn-success">Dispatch</a>
+            <a href="{% url 'products:dispatch' pk=product.pk %}" class="btn btn-success btn-block">Dispatch</a>
         </div>
       {% endif %}
       {% if product.last_dispatch > 0 %}

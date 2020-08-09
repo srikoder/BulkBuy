@@ -37,7 +37,6 @@ class ProductDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(context)
         context['reviews'] = product_models.ProductReview.objects.filter(product__pk = context['view'].kwargs['pk'])
         return context
     
@@ -92,6 +91,7 @@ class ProductSearchResultsView(generic.ListView):
         if query:
             result = result.filter(name__icontains = query)
         return result
+        
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -113,7 +113,6 @@ def dispatchProduct(request, pk):
 def cancelDispatch(request, pk):
     product = product_models.Product.objects.get(pk = pk)
     product_orders = orders_models.Order.objects.filter(product = product, status = 'DP')
-    product.number_of_orders_received += product.last_dispatch
     product.last_dispatch = 0
     for order in product_orders:
         order.status = 'CL'
